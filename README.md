@@ -93,10 +93,6 @@ Transform the banking application deployment strategy to:
 - **Scaling Trigger**: CPU utilization above 60%
 - **Cooldown Period**: 2 minutes between scaling actions
 
-### Traffic Flow
-```
-User Request → CloudFront CDN → Application Load Balancer → ECS Containers
-```
 
 ## 🏛️ High-Level Architecture
 
