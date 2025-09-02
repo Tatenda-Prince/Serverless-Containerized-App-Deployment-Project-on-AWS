@@ -131,23 +131,44 @@ User Request → CloudFront CDN → Application Load Balancer → ECS Containers
 - Terraform installed
 
 ### Quick Deployment
-1. **Clone Repository**
-   ```bash
-   git clone <repository-url>
-   cd banking-app
-   ```
+```bash
+# 1. Clone repository
+git clone https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS.git
+```
 
-2. **Configure AWS Credentials**
-   ```bash
-   aws configure
-   ```
+### **2. Initialize Terraform**
+```bash
+terraform init
+```
+This downloads required providers and initializes the backend.
 
-3. **Deploy Infrastructure**
-   ```bash
-   cd terraform
-   terraform init
-   terraform apply
-   ```
+### **2. Validate Configuration**
+```bash
+terraform validate
+```
+Checks syntax and validates configuration files.
+
+
+### **3. Plan Infrastructure**
+```bash
+terraform plan
+```
+Shows what resources will be created, modified, or destroyed.
+
+### **4. Apply Infrastructure**
+```bash
+terraform apply
+```
+Creates the infrastructure. Type `yes` when prompted.
+
+### **5. Get Outputs**
+```bash
+terraform output
+```
+Displays important URLs and resource names:
+
+- `website_url`: CloudFront distribution URL
+
 
 4. **Set GitHub Secrets**
    - `AWS_ACCESS_KEY_ID`
@@ -164,29 +185,55 @@ User Request → CloudFront CDN → Application Load Balancer → ECS Containers
    git push origin master
    ```
 
-## 💡 Why This Architecture Works
+## 🧪 Testing the System
 
-### Business Benefits
-- **Reduced Operational Complexity**: Serverless containers eliminate server management
-- **Cost Optimization**: Pay only for resources used, automatic scaling prevents over-provisioning
-- **Faster Innovation**: Teams focus on features, not infrastructure
-- **Risk Mitigation**: Automated deployments reduce human error
-- **Global Reach**: CloudFront CDN ensures fast performance worldwide
+### Check Infrastructure Status
+```bash
+# Check ECS services are running
+aws ecs describe-services --cluster my-ecs-cluster --services shell-bank-backend shell-bank-frontend --region us-east-1 --query 'services[*].{Name:serviceName,Running:runningCount,Desired:desiredCount}'
 
-### Technical Advantages
-- **High Availability**: Multi-AZ deployment with automatic failover
-- **Scalability**: Handles traffic spikes automatically
-- **Security**: Multiple layers of security controls
-- **Maintainability**: Infrastructure as Code ensures consistency
-- **Observability**: Comprehensive monitoring and logging
+# Get current URLs
+cd terraform
+terraform output
+```
 
-## 📊 Performance Metrics
+### Test Application Functionality
+```bash
+# Test load balancer directly
+curl "http://$(terraform output -raw load_balancer_dns)/"
 
-- **Deployment Time**: < 5 minutes (vs. 2-4 weeks previously)
-- **Scaling Response**: < 2 minutes to handle traffic spikes
-- **Global Latency**: < 100ms via CloudFront edge locations
-- **Availability**: 99.9% uptime SLA
-- **Cost Efficiency**: 40% reduction in infrastructure costs
+# Test API endpoint
+curl "http://$(terraform output -raw load_balancer_dns)/api/register" -X POST -H "Content-Type: application/json" -d '{"email":"test@test.com","password":"test123","full_name":"Test User"}'
+
+# Test CloudFront distribution
+curl "$(terraform output -raw shell_bank_url)"
+```
+
+### Monitor Auto-Scaling
+```bash
+# Check auto-scaling targets
+aws application-autoscaling describe-scalable-targets --service-namespace ecs --region us-east-1
+
+# View container metrics
+aws cloudwatch get-metric-statistics --namespace AWS/ECS --metric-name CPUUtilization --dimensions Name=ServiceName,Value=shell-bank-backend Name=ClusterName,Value=my-ecs-cluster --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) --end-time $(date -u +%Y-%m-%dT%H:%M:%S) --period 300 --statistics Average --region us-east-1
+```
+
+### Test CI/CD Pipeline
+```bash
+# Make a code change and push
+echo "// Test change" >> frontend/src/App.js
+git add .
+git commit -m "Test CI/CD pipeline"
+git push origin master
+
+# Monitor deployment in GitHub Actions tab
+```
+
+### Health Checks
+- **Frontend**: Visit CloudFront URL and verify UI loads
+- **Backend**: Register a new user and perform banking transactions
+- **Auto-scaling**: Monitor container count during load
+- **CI/CD**: Push code changes and verify automatic deployment
 
 ## 🔮 Future Enhancements
 
