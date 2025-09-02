@@ -31,7 +31,7 @@ jobs:
           ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
         run: |
           IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
-          docker build -f dockerfiles/Dockerfile.backend -t $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:$IMAGE_TAG ./backend
+          docker build -f dockerfiles/Dockerfile.backend -t $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:$IMAGE_TAG .
           docker push $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:$IMAGE_TAG
           docker tag $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:$IMAGE_TAG $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:latest
           docker push $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:latest
