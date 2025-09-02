@@ -1,0 +1,52 @@
+name: Deploy to AWS ECS
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build, Push, and Deploy to ECS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and Push Backend
+        env:
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+        run: |
+          IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+          docker build -f dockerfiles/Dockerfile.backend -t $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:$IMAGE_TAG ./backend
+          docker push $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:$IMAGE_TAG
+          docker tag $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:$IMAGE_TAG $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:latest
+          docker push $ECR_REGISTRY/${{ secrets.BACKEND_REPOSITORY }}:latest
+
+      - name: Build and Push Frontend
+        env:
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+        run: |
+          IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+          docker build -f dockerfiles/Dockerfile.frontend -t $ECR_REGISTRY/${{ secrets.FRONTEND_REPOSITORY }}:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/${{ secrets.FRONTEND_REPOSITORY }}:$IMAGE_TAG
+          docker tag $ECR_REGISTRY/${{ secrets.FRONTEND_REPOSITORY }}:$IMAGE_TAG $ECR_REGISTRY/${{ secrets.FRONTEND_REPOSITORY }}:latest
+          docker push $ECR_REGISTRY/${{ secrets.FRONTEND_REPOSITORY }}:latest
+
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service --cluster ${{ secrets.ECS_CLUSTER_NAME }} --service ${{ secrets.BACKEND_SERVICE_NAME }} --force-new-deployment
+          aws ecs update-service --cluster ${{ secrets.ECS_CLUSTER_NAME }} --service ${{ secrets.FRONTEND_SERVICE_NAME }} --force-new-deployment
