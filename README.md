@@ -100,27 +100,7 @@ User Request → CloudFront CDN → Application Load Balancer → ECS Containers
 
 ## 🏛️ High-Level Architecture
 
-```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   GitHub Repo   │───▶│  GitHub Actions  │───▶│   Amazon ECR    │
-│                 │    │     (CI/CD)      │    │ (Container Reg) │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                                                         │
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│     Users       │───▶│   CloudFront     │───▶│       ALB       │
-│   (Global)      │    │     (CDN)        │    │ (Load Balancer) │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                                                         │
-                       ┌──────────────────┐    ┌─────────────────┐
-                       │   Auto Scaling   │───▶│   ECS Fargate   │
-                       │     Group        │    │   Containers    │
-                       └──────────────────┘    └─────────────────┘
-                                                         │
-                       ┌──────────────────┐    ┌─────────────────┐
-                       │   CloudWatch     │───▶│      VPC        │
-                       │   Monitoring     │    │   (Networking)  │
-                       └──────────────────┘    └─────────────────┘
-```
+
 
 ## 🚀 Getting Started
 
@@ -170,69 +150,24 @@ Displays important URLs and resource names:
 - `website_url`: CloudFront distribution URL
 
 
-4. **Set GitHub Secrets**
-   - `AWS_ACCESS_KEY_ID`
-   - `AWS_SECRET_ACCESS_KEY`
-   - `ECR_REGISTRY`
-   - `ECS_CLUSTER_NAME`
-   - `BACKEND_SERVICE_NAME`
-   - `FRONTEND_SERVICE_NAME`
-   - `BACKEND_REPOSITORY`
-   - `FRONTEND_REPOSITORY`
 
-5. **Push Code to Trigger Deployment**
-   ```bash
-   git push origin master
-   ```
 
 ## 🧪 Testing the System
 
-### Check Infrastructure Status
-```bash
-# Check ECS services are running
-aws ecs describe-services --cluster my-ecs-cluster --services shell-bank-backend shell-bank-frontend --region us-east-1 --query 'services[*].{Name:serviceName,Running:runningCount,Desired:desiredCount}'
+## Check Infrastructure Status
+- **Check ECS services are running**
 
-# Get current URLs
-cd terraform
-terraform output
-```
+## Test Application Functionality
 
-### Test Application Functionality
-```bash
-# Test load balancer directly
-curl "http://$(terraform output -raw load_balancer_dns)/"
-
-# Test API endpoint
-curl "http://$(terraform output -raw load_balancer_dns)/api/register" -X POST -H "Content-Type: application/json" -d '{"email":"test@test.com","password":"test123","full_name":"Test User"}'
-
-# Test CloudFront distribution
-curl "$(terraform output -raw shell_bank_url)"
-```
-
-### Monitor Auto-Scaling
-```bash
-# Check auto-scaling targets
-aws application-autoscaling describe-scalable-targets --service-namespace ecs --region us-east-1
-
-# View container metrics
-aws cloudwatch get-metric-statistics --namespace AWS/ECS --metric-name CPUUtilization --dimensions Name=ServiceName,Value=shell-bank-backend Name=ClusterName,Value=my-ecs-cluster --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) --end-time $(date -u +%Y-%m-%dT%H:%M:%S) --period 300 --statistics Average --region us-east-1
-```
-
-### Test CI/CD Pipeline
-```bash
-# Make a code change and push
-echo "// Test change" >> frontend/src/App.js
-git add .
-git commit -m "Test CI/CD pipeline"
-git push origin master
-
-# Monitor deployment in GitHub Actions tab
-```
-
-### Health Checks
 - **Frontend**: Visit CloudFront URL and verify UI loads
+
+
 - **Backend**: Register a new user and perform banking transactions
+
+
 - **Auto-scaling**: Monitor container count during load
+
+
 - **CI/CD**: Push code changes and verify automatic deployment
 
 ## 🔮 Future Enhancements
@@ -244,7 +179,3 @@ git push origin master
 - **Mobile API**: Extend API for mobile banking applications
 
 ---
-
-**Built with ❤️ for modern banking infrastructure**
-
-*This project demonstrates how traditional financial institutions can embrace cloud-native technologies to deliver better customer experiences while reducing operational complexity.*
