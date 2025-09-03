@@ -96,7 +96,7 @@ Transform the banking application deployment strategy to:
 
 ## 🏛️ High-Level Architecture
 
-![image_alt]()
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/fb8044be1097bb9a299a429f4e5ba342b2096d55/img/aws%20diagram.jpg)
 
 
 
