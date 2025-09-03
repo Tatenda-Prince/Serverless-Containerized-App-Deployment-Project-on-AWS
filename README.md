@@ -176,7 +176,7 @@ Displays important URLs and resource names:
 
 - **Auto-scaling**: Monitor container count during load
 
-  ![image_alt]()
+  ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/5bfef10bcd621b9be15f09f819e63db673f1ec77/img/Screenshot%2011.jpg)
 
 
 - **CI/CD**: Push code changes and verify the GitHub workflow
