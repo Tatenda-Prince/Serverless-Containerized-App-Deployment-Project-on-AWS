@@ -96,6 +96,8 @@ Transform the banking application deployment strategy to:
 
 ## 🏛️ High-Level Architecture
 
+![image_alt]()
+
 
 
 ## 🚀 Getting Started
@@ -151,20 +153,50 @@ Displays important URLs and resource names:
 ## 🧪 Testing the System
 
 ## Check Infrastructure Status
+
 - **Check ECS services are running**
+
+  ![image_alt]()
+
+  
 
 ## Test Application Functionality
 
 - **Frontend**: Visit CloudFront URL and verify UI loads
 
+  ![image_alt]()
+
 
 - **Backend**: Register a new user and perform banking transactions
+
+  
+![image_alt]()
+
 
 
 - **Auto-scaling**: Monitor container count during load
 
+  ![image_alt]()
+
 
 - **CI/CD**: Push code changes and verify automatic deployment
+
+  ![image_alt]()
+
+  
+
+- **CI/CD**: verify the changes
+  
+![image_alt]()
+  
+
+
+
+
+
+
+
+  
 
 ## 🔮 Future Enhancements
 
