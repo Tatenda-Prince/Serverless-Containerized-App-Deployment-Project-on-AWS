@@ -170,7 +170,7 @@ Displays important URLs and resource names:
 - **Backend**: Register a new user and perform banking transactions
 
   
- ![image_alt]()
+  ![image_alt]()
 
 
 
