@@ -188,7 +188,7 @@ Displays important URLs and resource names:
 - **CI/CD**: verify the changes
   
 
-  ![image_alt]()
+  ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/80260034ba0af780d1318199934b59876745b274/img/Screenshot%205.jpg)
   
 
 
