@@ -156,7 +156,7 @@ Displays important URLs and resource names:
 
 - **Check ECS services are running**
 
-  ![image_alt]()
+  ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/d47bf042cb1d3b901b2082fe4a1562a2e9225daf/img/Screenshot%207.jpg)
 
   
 
