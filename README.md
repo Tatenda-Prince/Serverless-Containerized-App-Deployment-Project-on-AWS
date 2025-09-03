@@ -164,7 +164,7 @@ Displays important URLs and resource names:
 
 - **Frontend**: Visit CloudFront URL and verify UI loads
 
-  ![image_alt]()
+  ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/f5c7d70f090042dad3b2e40e9f077c447d944ab8/img/Screenshot%201.jpg)
 
 
 - **Backend**: Register a new user and perform banking transactions
