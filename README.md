@@ -179,9 +179,9 @@ Displays important URLs and resource names:
   ![image_alt]()
 
 
-- **CI/CD**: Push code changes and verify automatic deployment
+- **CI/CD**: Push code changes and verify the GitHub workflow
 
-  ![image_alt]()
+  ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/3029c97f9bcde01e4d76897b98f5b73482b57cdc/img/Screenshot%204.jpg)
 
   
 
