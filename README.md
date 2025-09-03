@@ -170,7 +170,7 @@ Displays important URLs and resource names:
 - **Backend**: Register a new user and perform banking transactions
 
   
-  ![image_alt]()
+  ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/4fa65593633f965bb17efdd6bacaada47394394a/img/Screenshot%202.jpg)
 
 
 
