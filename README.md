@@ -170,7 +170,7 @@ Displays important URLs and resource names:
 - **Backend**: Register a new user and perform banking transactions
 
   
-![image_alt]()
+ ![image_alt]()
 
 
 
@@ -187,7 +187,8 @@ Displays important URLs and resource names:
 
 - **CI/CD**: verify the changes
   
-![image_alt]()
+
+  ![image_alt]()
   
 
 
