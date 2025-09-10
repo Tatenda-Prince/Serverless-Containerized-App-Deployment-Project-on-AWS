@@ -1,0 +1,56 @@
+groups:
+  - name: shell-bank-alerts
+    rules:
+      # High CPU Usage Alert
+      - alert: HighCPUUsage
+        expr: aws_ecs_cpu_utilization > 80
+        for: 2m
+        labels:
+          severity: warning
+          service: "{{ $labels.service }}"
+        annotations:
+          summary: "High CPU usage detected"
+          description: "{{ $labels.service }} CPU usage is {{ $value }}% for more than 2 minutes"
+
+      # High Memory Usage Alert  
+      - alert: HighMemoryUsage
+        expr: aws_ecs_memory_utilization > 85
+        for: 2m
+        labels:
+          severity: warning
+          service: "{{ $labels.service }}"
+        annotations:
+          summary: "High memory usage detected"
+          description: "{{ $labels.service }} memory usage is {{ $value }}% for more than 2 minutes"
+
+      # Service Down Alert
+      - alert: ServiceDown
+        expr: up{job="aws-ecs"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Shell Bank monitoring is down"
+          description: "AWS metrics exporter has been down for more than 1 minute"
+
+      # Backend Critical CPU
+      - alert: BackendCriticalCPU
+        expr: aws_ecs_cpu_utilization{service="shell-bank-backend"} > 90
+        for: 1m
+        labels:
+          severity: critical
+          service: backend
+        annotations:
+          summary: "CRITICAL: Backend CPU usage extremely high"
+          description: "Backend CPU usage is {{ $value }}% - immediate attention required"
+
+      # Test Alert - Will fire immediately (for demo)
+      - alert: TestHighCPUAlert
+        expr: aws_ecs_cpu_utilization{service="shell-bank-backend"} > 0.5
+        for: 10s
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "🚨 TEST ALERT: High CPU Detected!"
+          description: "Backend CPU usage is {{ $value }}% - This is a test alert to verify Slack notifications work"
