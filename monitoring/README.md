@@ -162,9 +162,13 @@ cd monitoring/
 ```
 
 ```bash
-# 2. Set AWS credentials
+# 2. Set AWS credentials (SECURE METHOD)
 export AWS_ACCESS_KEY_ID=your_access_key
 export AWS_SECRET_ACCESS_KEY=your_secret_key
+
+# Alternative: Create .env file from template
+cp .env.example .env
+# Edit .env file with your actual credentials
 ```
 
 ```bash
