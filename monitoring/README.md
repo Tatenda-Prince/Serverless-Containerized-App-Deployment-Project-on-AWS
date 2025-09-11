@@ -164,7 +164,8 @@ curl http://localhost:9106/metrics
 ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/3c74eee28c5057619f0ab2961ebb37ae0f35cf20/monitoring/img/Screenshot%201.jpg)
 
 
-![image_alt]()
+
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/e59da13efc27f9518a765ffdfbff5b1c2c3532cd/monitoring/img/Screenshot%202.jpg)
 
 
 
