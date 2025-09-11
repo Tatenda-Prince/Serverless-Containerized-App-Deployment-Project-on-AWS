@@ -157,10 +157,11 @@ curl http://localhost:9106/metrics
 
 
 #### ✅ **Dashboard Access**
+
 - **Grafana**: http://localhost:3001 (admin/admin)
 
 
-![image_alt]()
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/3c74eee28c5057619f0ab2961ebb37ae0f35cf20/monitoring/img/Screenshot%201.jpg)
 
 
 ![image_alt]()
