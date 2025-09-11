@@ -184,7 +184,7 @@ curl http://localhost:9106/metrics
     
 2. Verify "TestHighCPUAlert" is FIRING
 
- ![image_alt]()
+ ![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/efe97db613597c04a5a3431fc87c36b4369bf568/monitoring/img/Screenshot%204.jpg)
 
    
 3. Check Slack channel for notifications
