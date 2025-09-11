@@ -190,7 +190,7 @@ curl http://localhost:9106/metrics
 3. Check Slack channel for notifications
 
    
-![image_alt]()
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/4e97e5ba02ed5548058a787c31593483107bbba7/monitoring/img/Screenshot%206.jpg)
 
 4. Confirm alert appears in Alertmanager UI
 
