@@ -171,7 +171,8 @@ curl http://localhost:9106/metrics
 
 - **Prometheus**: http://localhost:9091
 
-![image_alt]()
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/e07cc8da8bb968c18f4135984a127ed36dadd459/monitoring/img/Screenshot%203.jpg)
+
 
 - **Alertmanager**: http://localhost:9093
 
