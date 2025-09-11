@@ -176,7 +176,7 @@ curl http://localhost:9106/metrics
 
 - **Alertmanager**: http://localhost:9093
 
-![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/358ad43860a27290043dc31cdc345b20498e14ce/monitoring/img/Screenshot%204.jpg)
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/85802ee7d36d4a1ebf07b58e66078a204cfb907a/monitoring/img/Screenshot%205.jpg)
 
 #### ✅ **Alert Testing**
 1. Visit Prometheus alerts: http://localhost:9091/alerts
