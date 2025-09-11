@@ -176,15 +176,25 @@ curl http://localhost:9106/metrics
 
 - **Alertmanager**: http://localhost:9093
 
-![image_alt]()
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/358ad43860a27290043dc31cdc345b20498e14ce/monitoring/img/Screenshot%204.jpg)
 
 #### ✅ **Alert Testing**
 1. Visit Prometheus alerts: http://localhost:9091/alerts
+   
+    
 2. Verify "TestHighCPUAlert" is FIRING
+
+ ![image_alt]()
+
+   
 3. Check Slack channel for notifications
+
+   
+![image_alt]()
+
 4. Confirm alert appears in Alertmanager UI
 
-![image_alt]()
+
 
 #### ✅ **Live Application Monitoring**
 1. Generate traffic: Visit https://d2a9m3x91glum2.cloudfront.net
