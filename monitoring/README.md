@@ -202,7 +202,7 @@ curl http://localhost:9106/metrics
 3. Observe real-time metric changes in Grafana
 4. Monitor resource utilization patterns
 
-![image_alt]()
+![image_alt](https://github.com/Tatenda-Prince/Serverless-Containerized-App-Deployment-Project-on-AWS/blob/bf7fa7bccb1bace20e054a0af0e2ae950297e93e/monitoring/img/Screenshot%208.jpg)
 
 ### Performance Validation
 - **Metric Collection Latency**: < 60 seconds
